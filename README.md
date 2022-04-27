@@ -62,6 +62,8 @@ Optional :
 
 ### Figma Mockup
 
-<img src="/assets/img/mockup/HackersPoulette_contactform_mockup.png" width="800"/>
+<p align="center">
+    <img src="/assets/img/mockup/HackersPoulette_contactform_mockup.png" width="800"/>
+</p>
 
 ### Overview
