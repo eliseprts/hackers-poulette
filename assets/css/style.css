@@ -15,6 +15,9 @@ body #contactFormContainer h1 {
   font-family: "Bellota", cursive;
   color: #0D8187;
 }
+body #contactFormContainer img {
+  padding-top: 20px;
+}
 body #contactFormContainer button {
   background-color: #0D8187;
   border-radius: 50px;
