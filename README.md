@@ -62,6 +62,6 @@ Optional :
 
 ### Figma Mockup
 
-![Mockup](/assets/img/mockup/HackersPoulette_contactform_mockup.png)
+![Mockup](/assets/img/mockup/HackersPoulette_contactform_mockup.png | width=100)
 
 ### Overview
