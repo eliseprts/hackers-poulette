@@ -4,35 +4,19 @@ include ('functions.php');
 
 // RETRIEVE SEND DATA
 
-$clientLastname = test_input($_POST['lastname']);
-$clientName = test_input($_POST['name']);
-$clientFullname = $clientName . $clientLastname;
-$clientEmail = test_input($_POST['email']);
-$clientCountry = test_input($_POST['country']);
-$clientMessage = test_input($_POST['message']);
+if(!empty($_POST['lastname']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['country']) && !empty($_POST['message']) && !empty($_POST['gender']) && !empty($_POST['subject'])) {
+    $clientLastname = test_input($_POST['lastname']);
+    $clientName = test_input($_POST['name']);
+    $clientFullname = $clientName . $clientLastname;
+    $clientEmail = test_input($_POST['email']);
+    $clientCountry = test_input($_POST['country']);
+    $clientMessage = test_input($_POST['message']);
+    $clientGender = $_POST['gender'];
+    $clientSubject = $_POST['subject'];
 
-switch($_POST['gender']) {
-    case 'F':
-        $clientGender = 'Féminin';
-        break;
-    case 'M':
-        $clientGender = 'Masculin';
-        break;
-    case 'X':
-        $clientGender = 'Non précisé';
-        break;
-}
-
-switch ($_POST['subject']) {
-    case 'technicalIssue':
-        $clientSubject = 'Problème technique';
-        break;
-    case 'customerCare' :
-        $clientSubject = 'Service après vente';
-        break;
-    case 'other' :
-        $clientSubject = 'Autre';
-        break;
+} else {
+    echo 'Tous les champs n\'ont pas été remplis';
+    header('Location: index.php');
 }
 
 // EMAIL CONTENT
@@ -90,8 +74,8 @@ try {
     $mail->Body    = $emailContent;
 
     $mail->send();
+    header('Location: index.php');
     echo 'Message has been sent';
-    // header('Location: index.php');
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

@@ -29,12 +29,9 @@
                         <input class="form-control fw-light" type="text" name="lastname" placeholder="Nom" aria-required="true" aria-label="Nom" autocomplete="family name">
                         <span class="text-danger">
                             <?php
-                                if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                     if(!empty($_POST['lastname'])){
                                         echo 'Merci d\'entrer votre nom';
-                                        header('Location: index.php');
                                     }
-                                }
                             ?>
                         </span>
                     </div>
@@ -43,12 +40,10 @@
                         <input class="form-control fw-light" type="text" name="name" placeholder="Prénom"  aria-required="true" aria-label="Prénom" autocomplete="given name">
                         <span class="text-danger">
                             <?php
-                                if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                     if(empty($_POST['name'])){
                                         echo 'Merci d\'entrer votre prénom';
                                         header('Location: index.php');
                                     }
-                                }
                             ?>
                         </span>
                     </div>
@@ -57,12 +52,10 @@
                         <input class="form-control fw-light" type="email" name="email" placeholder="Email" aria-required="true" aria-label="Email" autocomplete="email">
                         <span class="text-danger">
                             <?php
-                                if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                     if(empty($_POST['email'])){
                                         echo 'Merci d\'entrer votre adresse email';
                                         header('Location: index.php');
                                     }
-                                }
                             ?>
                         </span>
                     </div>
@@ -71,12 +64,10 @@
                         <input class="form-control fw-light" type="text" name="country" placeholder="Pays" aria-required="true" aria-label="Pays" autocomplete="country-name">
                         <span class="text-danger">
                             <?php
-                                if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                     if(empty($_POST['country'])){
                                         echo 'Merci d\'entrer votre pays';
                                         header('Location: index.php');
                                     }
-                                }
                             ?>
                         </span>
                     </div>
@@ -86,25 +77,23 @@
                                 <h3 class="form-label fw-light fs-6">Genre</h3>
                             </div>
                             <div class="form-check form-check-inline form-check">
-                                <input class="form-check-input" type="radio" name="gender" id="genderRadioF" value="F" aria-labelledby="genderRadioF" aria-checked="false">
+                                <input class="form-check-input" type="radio" name="gender" id="genderRadioF" value="Féminin" aria-labelledby="genderRadioF" aria-checked="false">
                                 <label class="form-check-label fw-light fs-6" for="genderRadioF">F</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="genderRadioM" value="M" aria-labelledby="genderRadioM" aria-checked="false">
+                                <input class="form-check-input" type="radio" name="gender" id="genderRadioM" value="Masculin" aria-labelledby="genderRadioM" aria-checked="false">
                                 <label class="form-check-label fw-light fs-6" for="genderRadioM">M</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="genderRadioX" value="X" aria-labelledby="genderRadioX" aria-checked="false">
+                                <input class="form-check-input" type="radio" name="gender" id="genderRadioX" value="Non précisé" aria-labelledby="genderRadioX" aria-checked="false">
                                 <label class="form-check-label fw-light fs-6"for="genderRadioX">Je ne veux pas répondre</label>
                             </div>
                             <span class="text-danger">
                             <?php
-                                if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                     if(empty($_POST['gender'])){
                                         echo 'Merci de cocher une réponse';
                                         header('Location: index.php');
                                     }
-                                }
                             ?>
                             </span>
                     </div>
@@ -112,33 +101,20 @@
                     <div class="input-group">
                         <label class="input-group-text fw-light fs-6 bg-white" for="inputSubject">Objet</label>
                         <select class="form-select" name="subject" aria-required="true">
-                            <option value="null" selected>Sélectionner un objet</option>
-                            <option value="technicalIssue">Problème technique</option>
-                            <option value="customerCare">Service après vente</option>
-                            <option value="other">Autre</option>
+                            <option value="Problème technique">Problème technique</option>
+                            <option value="Service après vente">Service après vente</option>
+                            <option value="Autre">Autre</option>
                         </select>
-                        <span class="text-danger">
-                            <?php
-                                if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                                    if(($_POST['subject']) == 'null'){
-                                        echo 'Merci de sélectionner un objet';
-                                        header('Location: index.php');
-                                    }
-                                }
-                            ?>
-                        </span>
                     </div>
                     <!-- Message -->
                     <div class="col-12">
                         <textarea class="form-control fw-light" name="message" placeholder="Message" aria-required="true" aria-label="Message"></textarea>
                         <span class="text-danger">
                             <?php
-                                if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                     if(empty($_POST['message'])){
                                         echo 'Merci d\'entrer un message';
                                         header('Location: index.php');
                                     }
-                                }
                             ?>
                         </span>
                     </div>
