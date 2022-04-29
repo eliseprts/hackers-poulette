@@ -39,9 +39,5 @@ switch ($_POST['subject']) {
 $recipient = 'elisepourtois.pro@gmail.com';
 $mailHeaders = 'From : ' . $clientEmail;
 
-try {
-    mail($recipient, $clientSubject, $clientMessage, $mailHeaders);
-    echo 'Votre message a bien été envoyé !';
-} catch (Exception $e) {
-    echo 'Le message n\'a pas pu être envoyé.';
-}
+mail($recipient, $clientSubject, $clientMessage, $mailHeaders) or die('Erreur');
+echo 'Votre message a bien été envoyé !';
