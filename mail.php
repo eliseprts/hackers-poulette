@@ -37,7 +37,7 @@ switch ($_POST['subject']) {
 
 // Variables
 $recipient = 'elisepourtois.pro@gmail.com';
-$mailHeaders = 'From : ' . $clientEmail . '\r \n';
+$mailHeaders = 'From : ' . $clientEmail;
 
 try {
     mail($recipient, $clientSubject, $clientMessage, $mailHeaders);
