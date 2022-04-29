@@ -1,13 +1,6 @@
 <?php
 
-// VARIABLE
-
-$smtp = 'smtp.gmail.com';
-$recipient = getenv('EMAIL');
-$username = getenv('USERNAME');
-$password = getenv('PASSWORD');
-
-// RETRIEVE SEND DATA
+// RETRIEVE DATA FROM CONTACT FORM
 
 $clientLastname = $_POST['lastname'];
 $clientName = $_POST['name'];
@@ -30,52 +23,25 @@ switch($_POST['gender']) {
 
 switch ($_POST['subject']) {
     case 'technicalIssue':
-        $clientSubject = 'Problème technique';
+        $clientSubject = 'Objet : Problème technique';
         break;
     case 'customerCare' :
-        $clientSubject = 'Service après vente';
+        $clientSubject = 'Objet : Service après vente';
         break;
     case 'other' :
-        $clientSubject = 'Autre';
+        $clientSubject = 'Objet : Autre';
         break;
 }
 
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+// SEND EMAIL
 
-//Load Composer's autoloader
-require 'vendor/autoload.php';
-
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
+// Variables
+$recipient = 'elisepourtois.pro@gmail.com';
+$mailHeaders = 'From : ' . $clientEmail . '\r \n';
 
 try {
-    //Server settings
-    $mail->isSMTP();
-    $mail->Host       = $smtp;
-    $mail->SMTPAuth   = true;
-    $mail->Username   = $recipient;
-    $mail->Password   = $password;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port       = 465;
-
-    //Recipients
-    $mail->setFrom($clientEmail, $clientFullname);
-    $mail->addAddress($recipient, 'Elise Pourtois');
-
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = $clientSubject;
-    $mail->Body    = $clientMessage;
-    $mail->AltBody = $clientMessage;
-
-    $mail->send();
-    echo 'Message has been sent';
+    mail($recipient, $clientSubject, $clientMessage, $mailHeaders);
+    echo 'Votre message a bien été envoyé !';
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo 'Le message n\'a pas pu être envoyé.';
 }
-
-?>
