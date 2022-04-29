@@ -1,13 +1,15 @@
 <?php
 
-// RETRIEVE DATA FROM CONTACT FORM
+include ('functions.php');
 
-$clientLastname = $_POST['lastname'];
-$clientName = $_POST['name'];
+// RETRIEVE SEND DATA
+
+$clientLastname = test_input($_POST['lastname']);
+$clientName = test_input($_POST['name']);
 $clientFullname = $clientName . $clientLastname;
-$clientEmail = $_POST['email'];
-$clientCountry = $_POST['country'];
-$clientMessage = $_POST['message'];
+$clientEmail = test_input($_POST['email']);
+$clientCountry = test_input($_POST['country']);
+$clientMessage = test_input($_POST['message']);
 
 switch($_POST['gender']) {
     case 'F':
@@ -23,21 +25,73 @@ switch($_POST['gender']) {
 
 switch ($_POST['subject']) {
     case 'technicalIssue':
-        $clientSubject = 'Objet : Problème technique';
+        $clientSubject = 'Problème technique';
         break;
     case 'customerCare' :
-        $clientSubject = 'Objet : Service après vente';
+        $clientSubject = 'Service après vente';
         break;
     case 'other' :
-        $clientSubject = 'Objet : Autre';
+        $clientSubject = 'Autre';
         break;
 }
 
-// SEND EMAIL
+// EMAIL CONTENT
 
-// Variables
-$recipient = 'elisepourtois.pro@gmail.com';
-$mailHeaders = 'From : ' . $clientEmail;
+$emailContent = 
+    $clientMessage .
+    '<h4>Données du client</h4>
+    <table>
+        <tr>
+            <th>Nom<th>
+            <td>' . $clientFullname . '</td>
+        </tr>
+        <tr>
+            <th>Email<th>
+            <td>' . $clientEmail . '</td>
+        </tr>
+        <tr>
+            <th>Pays<th>
+            <td>' . $clientCountry . '</td>
+        </tr>
+        <tr>
+            <th>Genre<th>
+            <td>' . $clientGender . '</td>
+        </tr>
+    </table>';
 
-mail($recipient, $clientSubject, $clientMessage, $mailHeaders) or die('Erreur');
-echo 'Votre message a bien été envoyé !';
+// SEND EMAIL WITH PHPMAILER
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
+$mail = new PHPMailer(true);
+
+try {
+    //Server settings (using mailtrap)
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.mailtrap.io';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'fdc154f707f69b';
+    $mail->Password   = 'ae85a177918dca';
+    $mail->Port       = 2525;
+    $mail->CharSet = 'UTF-8';
+
+    //Recipients
+    $mail->setFrom($clientEmail, $clientFullname);
+    $mail->addAddress('test@gmail.com'); // Fake email address
+    $mail->addReplyTo($clientEmail, $clientName, $clientLastname);
+
+    //Content
+    $mail->isHTML(true);
+    $mail->Subject = $clientSubject;
+    $mail->Body    = $emailContent;
+
+    $mail->send();
+    echo 'Message has been sent';
+    // header('Location: index.php');
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
