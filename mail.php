@@ -16,7 +16,7 @@ if(!empty($_POST['lastname']) && !empty($_POST['name']) && !empty($_POST['email'
 
 } else {
     echo 'Tous les champs n\'ont pas été remplis';
-    header('Location: index.php');
+    // header('Location: index.php');
 }
 
 // EMAIL CONTENT
@@ -74,7 +74,8 @@ try {
     $mail->Body    = $emailContent;
 
     $mail->send();
-    // header('Location: index.php');
+    header('Location: index.php');
+    exit;
     echo 'Message has been sent';
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

@@ -23,53 +23,26 @@
             </div>
             <!-- Block 2 / Form -->
             <div class="col-md-12 col-lg-6">
-                <form class="row g-3" action="mail.php" method="post">
+                <form class="row g-3" action="send.php" method="post">
                     <!-- Lastname -->
                     <div class="col-md-12 col-lg-6">
                         <input class="form-control fw-light" type="text" name="lastname" placeholder="Nom" aria-required="true" aria-label="Nom" autocomplete="family name">
-                        <span class="text-danger">
-                            <?php
-                                    if(!empty($_POST['lastname'])){
-                                        echo 'Merci d\'entrer votre nom';
-                                    }
-                            ?>
-                        </span>
+                        <span class="text-danger">*</span>
                     </div>
                     <!-- Name -->
                     <div class="col-md-12 col-lg-6">
                         <input class="form-control fw-light" type="text" name="name" placeholder="Prénom"  aria-required="true" aria-label="Prénom" autocomplete="given name">
-                        <span class="text-danger">
-                            <?php
-                                    if(empty($_POST['name'])){
-                                        echo 'Merci d\'entrer votre prénom';
-                                        header('Location: index.php');
-                                    }
-                            ?>
-                        </span>
+                        <span class="text-danger">*</span>
                     </div>
                     <!-- Email -->
                     <div class="col-12">
                         <input class="form-control fw-light" type="email" name="email" placeholder="Email" aria-required="true" aria-label="Email" autocomplete="email">
-                        <span class="text-danger">
-                            <?php
-                                    if(empty($_POST['email'])){
-                                        echo 'Merci d\'entrer votre adresse email';
-                                        header('Location: index.php');
-                                    }
-                            ?>
-                        </span>
+                        <span class="text-danger">*</span>
                     </div>
                     <!-- Country -->
                     <div class="col-12">
                         <input class="form-control fw-light" type="text" name="country" placeholder="Pays" aria-required="true" aria-label="Pays" autocomplete="country-name">
-                        <span class="text-danger">
-                            <?php
-                                    if(empty($_POST['country'])){
-                                        echo 'Merci d\'entrer votre pays';
-                                        header('Location: index.php');
-                                    }
-                            ?>
-                        </span>
+                        <span class="text-danger">*</span>
                     </div>
                     <!-- Gender -->
                     <div class="col-12" role="radiogroup" aria-label="Genre" aria-required="true">
@@ -88,14 +61,7 @@
                                 <input class="form-check-input" type="radio" name="gender" id="genderRadioX" value="Non précisé" aria-labelledby="genderRadioX" aria-checked="false">
                                 <label class="form-check-label fw-light fs-6"for="genderRadioX">Je ne veux pas répondre</label>
                             </div>
-                            <span class="text-danger">
-                            <?php
-                                    if(empty($_POST['gender'])){
-                                        echo 'Merci de cocher une réponse';
-                                        header('Location: index.php');
-                                    }
-                            ?>
-                            </span>
+                            <span class="text-danger">*</span>
                     </div>
                     <!-- Subject -->
                     <div class="input-group">
@@ -109,14 +75,7 @@
                     <!-- Message -->
                     <div class="col-12">
                         <textarea class="form-control fw-light" name="message" placeholder="Message" aria-required="true" aria-label="Message"></textarea>
-                        <span class="text-danger">
-                            <?php
-                                    if(empty($_POST['message'])){
-                                        echo 'Merci d\'entrer un message';
-                                        header('Location: index.php');
-                                    }
-                            ?>
-                        </span>
+                        <span class="text-danger">*</span>
                     </div>
                     <!-- Submit btn -->
                     <div class="d-flex justify-content-center">
