@@ -74,7 +74,7 @@ try {
     $mail->Body    = $emailContent;
 
     $mail->send();
-    header('Location: index.php');
+    // header('Location: index.php');
     echo 'Message has been sent';
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
