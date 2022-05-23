@@ -5,7 +5,7 @@ _Repo created as part of the [BeCode web development training](https://becode.or
 - Mode : solo work
 - Type of challenge : consolidation
 - Duration : 3 days
-- [Deployed app](https://eprts-hackers-poulette.herokuapp.com/)
+- [Deployed app](https://eprts-hackers-poulette-2.herokuapp.com/)
 
 ## Languages used
 
@@ -56,8 +56,8 @@ Optional :
 - [x] Plan the work ahead
 - [x] Contact form (html)
 - [x] Contact form (css via framework css)
-- [ ] Contact form (PHP)
-- [ ] Process the form data
+- [x] Contact form (PHP)
+- [x] Process the form data
 
 ## Result
 
